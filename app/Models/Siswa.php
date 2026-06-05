@@ -85,4 +85,9 @@ class Siswa extends Authenticatable
     {
         return $this->hasMany(StudentDocument::class, 'siswa_id');
     }
+
+    public function taskSubmissions()
+    {
+        return $this->hasMany(TaskSubmission::class, 'siswa_id');
+    }
 }

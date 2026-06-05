@@ -79,14 +79,14 @@ class DashboardSenseiSeeder extends Seeder
         Banner::firstOrCreate([
             'judul' => 'Persiapkan Materi Kelasmu',
             'deskripsi' => 'Susun bagan pembelajaran yang terstruktur di menu Pembelajaran agar siswa dapat mengikuti alur belajar dengan mudah.',
-            'role_target' => 'Sensei',
+            'role_target' => 'Semua',
             'lokasi' => 'Dashboard'
         ]);
 
         Banner::firstOrCreate([
             'judul' => 'Evaluasi Kemampuan Siswa',
             'deskripsi' => 'Berikan catatan evaluasi secara berkala untuk memantau perkembangan kompetensi bahasa Jepang siswa Anda.',
-            'role_target' => 'Sensei',
+            'role_target' => 'Semua',
             'lokasi' => 'Dashboard'
         ]);
     }

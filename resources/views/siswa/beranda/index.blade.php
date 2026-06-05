@@ -208,45 +208,37 @@
                 </div>
             </div>
 
-            <!-- Kalender Akademik & Jadwal -->
+            <!-- Jadwal Hari Ini -->
             <div class="bg-white rounded-md border border-gray-100 shadow-sm p-6">
                 <div class="flex items-center justify-between mb-5">
                     <h3 class="text-lg font-medium text-primer flex items-center">
-                        <svg class="w-5 h-5 mr-2 text-sekunder" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        Agenda & Kalender Akademik
+                        <svg class="w-5 h-5 mr-2 text-sekunder" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Jadwal Hari Ini
                     </h3>
-                    <a href="#" class="text-xs font-medium text-primer bg-primer/5 hover:bg-primer/10 px-3 py-1.5 rounded-md transition-colors">Bulan Ini</a>
+                    <a href="{{ route('siswa.kalender') }}" class="text-xs font-medium text-primer bg-primer/5 hover:bg-primer/10 px-3 py-1.5 rounded-md transition-colors">Lihat Semua</a>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Kelas Terdekat -->
-                    <div class="border border-primer/20 bg-primer/5 p-4 rounded-md">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-sm font-medium text-primer">Kelas N4 - Tata Bahasa</h4>
-                            <span class="text-[10px] font-medium bg-sekunder text-white px-2 py-0.5 rounded-sm animate-pulse">Berlangsung</span>
+                @if($jadwals->count() > 0)
+                <div class="grid grid-cols-1 gap-4">
+                    @foreach($jadwals as $jadwal)
+                    <div class="border border-primer/20 bg-primer/5 p-4 rounded-md flex justify-between items-center">
+                        <div>
+                            <h4 class="text-sm font-medium text-primer">{{ $jadwal->kegiatan }}</h4>
+                            <div class="flex items-center text-xs font-medium text-gray-600 mt-1">
+                                <svg class="w-3.5 h-3.5 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                {{ substr($jadwal->jam_mulai, 0, 5) }} - {{ substr($jadwal->jam_selesai, 0, 5) }} WIB
+                            </div>
                         </div>
-                        <div class="flex items-center text-xs font-medium text-gray-600 mb-4">
-                            <svg class="w-3.5 h-3.5 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Hari ini, 08:00 - 10:00 WIB
-                        </div>
-                        <button class="w-full bg-white border border-primer/30 text-primer hover:bg-primer hover:text-white px-4 py-2 rounded-md text-xs font-medium transition-colors text-center">
-                            Masuk Kelas (Zoom)
-                        </button>
+                        <span class="text-[10px] font-medium bg-sekunder text-white px-2 py-0.5 rounded-sm animate-pulse">Berlangsung</span>
                     </div>
-
-                    <!-- Agenda Kalender -->
-                    <div class="border border-gray-100 bg-gray-50 p-4 rounded-md">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-sm font-medium text-gray-800">Ujian Tengah Semester</h4>
-                            <span class="text-[10px] font-medium bg-white text-gray-600 border border-gray-200 px-2 py-0.5 rounded-sm">Wajib</span>
-                        </div>
-                        <div class="flex items-center text-xs font-medium text-gray-600 mb-4">
-                            <svg class="w-3.5 h-3.5 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            15 Okt 2026
-                        </div>
-                        <p class="text-xs text-gray-500">Materi evaluasi mencakup bab 1 hingga bab 12.</p>
-                    </div>
+                    @endforeach
                 </div>
+                @else
+                <div class="p-6 text-center border-2 border-dashed border-gray-100 rounded-md">
+                    <svg class="w-10 h-10 mx-auto text-gray-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <p class="text-sm font-medium text-gray-500">Tidak ada jadwal hari ini.</p>
+                </div>
+                @endif
             </div>
             
         </div>

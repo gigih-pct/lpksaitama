@@ -64,11 +64,11 @@ class DashboardSiswaSeeder extends Seeder
 
         // 4. Create Subjects
         $subjects = [
-            Subject::create(['nama_pelajaran' => 'Choukai (Mendengar)']),
-            Subject::create(['nama_pelajaran' => 'Dokkai (Membaca)']),
-            Subject::create(['nama_pelajaran' => 'Bunpou (Tata Bahasa)']),
-            Subject::create(['nama_pelajaran' => 'Goi (Kosakata)']),
+            Subject::create(['nama_pelajaran' => 'Bunpou']),
             Subject::create(['nama_pelajaran' => 'Kanji']),
+            Subject::create(['nama_pelajaran' => 'Kotoba']),
+            Subject::create(['nama_pelajaran' => 'FMD']),
+            Subject::create(['nama_pelajaran' => 'Wawancara']),
         ];
 
         // 5. Create Grades (Nilai)
