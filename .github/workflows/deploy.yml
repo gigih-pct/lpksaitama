@@ -29,7 +29,7 @@ jobs:
         php-version: '8.2' # Ubah sesuai versi PHP di cPanel Anda
         
     - name: 📦 Install Composer Dependencies
-      run: composer install --optimize-autoloader --no-dev --no-progress
+      run: composer install --optimize-autoloader --no-dev --no-progress --ignore-platform-reqs
 
     # Tahap 1: Deploy file inti (Laravel Root)
     - name: 📂 Sync Laravel Root files
