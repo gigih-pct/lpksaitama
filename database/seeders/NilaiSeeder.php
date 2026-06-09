@@ -23,8 +23,6 @@ class NilaiSeeder extends Seeder
 {
     public function run()
     {
-        $faker = \Faker\Factory::create('id_ID');
-
         // Ensure we have a Batch
         $batch = \App\Models\Batch::firstOrCreate(
             ['nama_angkatan' => 'Angkatan 1', 'tahun' => date('Y')],
@@ -49,13 +47,13 @@ class NilaiSeeder extends Seeder
                 ['nomor_induk' => 'NIS' . str_pad($i + 1, 4, '0', STR_PAD_LEFT)],
                 [
                     'class_id' => $kelas->id,
-                    'nama_lengkap' => $faker->name,
-                    'email' => $faker->unique()->safeEmail,
+                    'nama_lengkap' => 'Siswa Dummy ' . ($i + 1),
+                    'email' => 'siswa' . ($i + 1) . '@lpk-saitama.com',
                     'password' => Hash::make('password'),
-                    'tanggal_lahir' => $faker->date(),
-                    'tempat_lahir' => $faker->city,
-                    'alamat' => $faker->address,
-                    'no_hp_siswa' => $faker->phoneNumber,
+                    'tanggal_lahir' => '2000-01-01',
+                    'tempat_lahir' => 'Jakarta',
+                    'alamat' => 'Jl. Merdeka No. ' . ($i + 1),
+                    'no_hp_siswa' => '0812345678' . str_pad($i, 2, '0', STR_PAD_LEFT),
                     'status_siswa' => 'Aktif',
                     'is_approved' => true,
                 ]
@@ -78,12 +76,13 @@ class NilaiSeeder extends Seeder
             'kode_absen' => 'ABS' . Str::random(5)
         ]);
 
+        $attendanceStatuses = ['Hadir', 'Hadir', 'Hadir', 'Izin', 'Sakit', 'Alpa'];
         foreach ($siswas as $siswa) {
             \App\Models\Attendance::firstOrCreate([
                 'attendance_session_id' => $session->id,
                 'siswa_id' => $siswa->id,
             ], [
-                'status' => $faker->randomElement(['Hadir', 'Hadir', 'Hadir', 'Izin', 'Sakit', 'Alpa']),
+                'status' => $attendanceStatuses[array_rand($attendanceStatuses)],
             ]);
         }
 
@@ -98,10 +97,9 @@ class NilaiSeeder extends Seeder
         ]);
 
         foreach ($siswas as $siswa) {
-            $nilaiVal = $faker->numberBetween(50, 100);
             NilaiBunpou::updateOrCreate(
                 ['evaluasi_bunpou_id' => $evalBkk->id, 'siswa_id' => $siswa->id],
-                ['nilai' => $nilaiVal]
+                ['nilai' => rand(50, 100)]
             );
         }
 
@@ -114,15 +112,16 @@ class NilaiSeeder extends Seeder
             'tanggal' => now()->format('Y-m-d'),
         ]);
 
+        $lTlOptions = ['L', 'TL'];
         foreach ($siswas as $siswa) {
             NilaiFmd::updateOrCreate(
                 ['evaluasi_fmd_id' => $evalFmd->id, 'siswa_id' => $siswa->id],
                 [
-                    'skor_mtk' => $faker->numberBetween(50, 100),
-                    'skor_lari' => $faker->numberBetween(50, 100),
-                    'skor_push_up' => $faker->numberBetween(50, 100),
-                    'skor_sit_up' => $faker->numberBetween(50, 100),
-                    'ket' => $faker->randomElement(['L', 'TL'])
+                    'skor_mtk' => rand(50, 100),
+                    'skor_lari' => rand(50, 100),
+                    'skor_push_up' => rand(50, 100),
+                    'skor_sit_up' => rand(50, 100),
+                    'ket' => $lTlOptions[array_rand($lTlOptions)]
                 ]
             );
         }
@@ -143,15 +142,15 @@ class NilaiSeeder extends Seeder
             NilaiWawancara::updateOrCreate(
                 ['eval_wawancara_id' => $evalWawancara->id, 'siswa_id' => $siswa->id],
                 [
-                    'materi_program' => $faker->numberBetween(60, 100),
-                    'materi_umum' => $faker->numberBetween(60, 100),
-                    'materi_jepang' => $faker->numberBetween(60, 100),
-                    'materi_indonesia' => $faker->numberBetween(60, 100),
-                    'sikap_cara_duduk' => $faker->numberBetween(60, 100),
-                    'sikap_suara' => $faker->numberBetween(60, 100),
-                    'sikap_fokus' => $faker->numberBetween(60, 100),
-                    'ket' => $faker->randomElement($ketOptions),
-                    'catatan' => $faker->sentence(3),
+                    'materi_program' => rand(60, 100),
+                    'materi_umum' => rand(60, 100),
+                    'materi_jepang' => rand(60, 100),
+                    'materi_indonesia' => rand(60, 100),
+                    'sikap_cara_duduk' => rand(60, 100),
+                    'sikap_suara' => rand(60, 100),
+                    'sikap_fokus' => rand(60, 100),
+                    'ket' => $ketOptions[array_rand($ketOptions)],
+                    'catatan' => 'Catatan evaluasi wawancara.',
                 ]
             );
         }
