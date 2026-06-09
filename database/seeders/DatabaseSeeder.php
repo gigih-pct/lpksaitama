@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SiswaSeeder::class,
             DashboardSiswaSeeder::class,
+            DashboardSenseiSeeder::class,
+            JadwalKalenderSeeder::class,
+            NilaiSeeder::class,
         ]);
     }
 }

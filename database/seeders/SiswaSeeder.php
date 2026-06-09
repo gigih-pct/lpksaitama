@@ -23,7 +23,7 @@ class SiswaSeeder extends Seeder
             'tempat_lahir' => 'Cilacap',
             'tanggal_lahir' => '2000-01-01',
             'alamat' => 'Jl. Pahlawan No. 123, Cilacap',
-            'no_hp' => '081234567890',
+            'no_hp_siswa' => '081234567890',
             'status_siswa' => 'Aktif',
             'tahap_roadmap' => 'Belajar Bahasa Jepang (N5)',
             'is_approved' => true, // Akun sudah di ACC
