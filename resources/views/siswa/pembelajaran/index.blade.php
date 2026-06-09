@@ -20,7 +20,7 @@
         
         <div class="flex-1 text-center md:text-left z-10 w-full">
             <h1 class="text-2xl md:text-3xl font-medium text-primer tracking-tight mb-1">{{ $siswa->nama_lengkap }}</h1>
-            <p class="text-gray-500 font-medium text-sm md:text-base mb-4">Siswa Program Bahasa Jepang - {{ $siswa->kelas->nama_kelas ?? 'Belum Ditentukan' }}</p>
+            <p class="text-gray-500 font-medium text-sm md:text-base mb-4">Siswa Program Bahasa Jepang - {{ $siswa->kelas?->nama_kelas ?? 'Belum Ditentukan' }}</p>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-gray-100 pt-4 text-left">
                 <div>
@@ -29,11 +29,11 @@
                 </div>
                 <div>
                     <p class="text-xs text-gray-400 font-medium mb-0.5">Kelas</p>
-                    <p class="text-sm text-gray-800 font-medium">{{ $siswa->kelas->nama_kelas ?? '-' }}</p>
+                    <p class="text-sm text-gray-800 font-medium">{{ $siswa->kelas?->nama_kelas ?? '-' }}</p>
                 </div>
                 <div>
                     <p class="text-xs text-gray-400 font-medium mb-0.5">Periode</p>
-                    <p class="text-sm text-gray-800 font-medium">{{ \App\Models\Batch::find($siswa->kelas->batch_id)?->tahun ?? '-' }}</p>
+                    <p class="text-sm text-gray-800 font-medium">{{ \App\Models\Batch::find($siswa->kelas?->batch_id)?->tahun ?? '-' }}</p>
                 </div>
                 <div>
                     <p class="text-xs text-gray-400 font-medium mb-0.5">Wali Kelas</p>

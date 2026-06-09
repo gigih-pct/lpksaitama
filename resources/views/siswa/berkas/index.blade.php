@@ -18,7 +18,7 @@
         
         <div class="flex-1 text-center md:text-left z-10 w-full">
             <h1 class="text-xl font-medium text-primer tracking-tight mb-1">{{ $siswa->nama_lengkap }}</h1>
-            <p class="text-gray-500 font-medium text-sm mb-3">Kelas {{ $siswa->kelas->nama_kelas ?? 'Belum Ditentukan' }}</p>
+            <p class="text-gray-500 font-medium text-sm mb-3">Kelas {{ $siswa->kelas?->nama_kelas ?? 'Belum Ditentukan' }}</p>
             
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-gray-100 pt-3 text-left">
                 <div>

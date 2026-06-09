@@ -20,7 +20,7 @@
                     <div class="flex-1 w-full">
                         <div class="flex flex-wrap items-center gap-3 mb-3">
                             <h1 class="text-xl sm:text-2xl font-medium tracking-tight">{{ $siswa->nama_lengkap ?? 'Nama Lengkap Siswa' }}</h1>
-                            <span class="text-[10px] bg-sekunder text-white px-2 py-0.5 rounded-sm font-medium border border-sekunder">Kelas {{ $siswa->kelas->nama_kelas ?? 'Belum Ditentukan' }}</span>
+                            <span class="text-[10px] bg-sekunder text-white px-2 py-0.5 rounded-sm font-medium border border-sekunder">Kelas {{ $siswa->kelas?->nama_kelas ?? 'Belum Ditentukan' }}</span>
                         </div>
                         
                         <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-3 text-xs text-white/80 mb-4">

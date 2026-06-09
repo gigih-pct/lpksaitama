@@ -14,7 +14,7 @@
         
         <div class="flex-1 text-center md:text-left">
             <h1 class="text-3xl font-medium text-primer tracking-tight mb-2">{{ $siswa->nama_lengkap }}</h1>
-            <p class="text-gray-500 font-medium mb-4">Program Bahasa Jepang - {{ $siswa->kelas->nama_kelas ?? 'Belum Ditentukan' }}</p>
+            <p class="text-gray-500 font-medium mb-4">Program Bahasa Jepang - {{ $siswa->kelas?->nama_kelas ?? 'Belum Ditentukan' }}</p>
             <div class="flex flex-wrap justify-center md:justify-start gap-3">
                 <span class="inline-flex items-center text-xs font-medium bg-primer/10 text-primer px-3 py-1 rounded-md border border-primer/20">
                     ID: {{ $siswa->nomor_induk ?? '-' }}
@@ -52,7 +52,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-gray-500 mb-1">Kelas</label>
-                        <input type="text" value="{{ $siswa->kelas->nama_kelas ?? '-' }}" readonly class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm text-gray-500 bg-gray-100 outline-none cursor-not-allowed">
+                        <input type="text" value="{{ $siswa->kelas?->nama_kelas ?? '-' }}" readonly class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm text-gray-500 bg-gray-100 outline-none cursor-not-allowed">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-gray-500 mb-1">Tanggal Lahir</label>
