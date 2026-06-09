@@ -75,7 +75,11 @@
                     </button>
                 </form>
 
-                <div class="mt-8 text-center lg:text-left">
+                <div class="mt-8 text-center lg:text-left border-t border-gray-100 pt-6">
+                    <p class="text-xs text-gray-500 mb-2">
+                        Belum memiliki akun pengajar? 
+                        <a href="{{ route('sensei.register') }}" class="text-sekunder font-medium hover:underline">Daftar di sini</a>
+                    </p>
                     <p class="text-xs text-gray-500">
                         Mengalami kendala login? Silakan hubungi 
                         <a href="#" class="text-primer font-medium hover:underline">Admin Akademik</a>

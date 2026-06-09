@@ -52,6 +52,8 @@ Route::middleware('auth:siswa')->prefix('siswa')->group(function () {
 Route::middleware('guest:sensei')->group(function () {
     Route::get('/sensei/login', [SenseiAuthController::class, 'showLoginForm'])->name('sensei.login');
     Route::post('/sensei/login', [SenseiAuthController::class, 'login']);
+    Route::get('/sensei/register', [SenseiAuthController::class, 'showRegisterForm'])->name('sensei.register');
+    Route::post('/sensei/register', [SenseiAuthController::class, 'register']);
 });
 
 Route::middleware('auth:sensei')->prefix('sensei')->name('sensei.')->group(function () {
