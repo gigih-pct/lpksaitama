@@ -18,13 +18,17 @@ Route::middleware('guest:siswa')->group(function () {
     Route::post('/siswa/register', [SiswaAuthController::class, 'register']);
 });
 
+Route::get('/', function () {
+    return view('portal');
+})->name('portal');
+
 /*
 |--------------------------------------------------------------------------
 | Siswa Protected Routes
 |--------------------------------------------------------------------------
 */
-Route::middleware('auth:siswa')->group(function () {
-    Route::post('/siswa/logout', [SiswaAuthController::class, 'logout'])->name('siswa.logout');
+Route::middleware('auth:siswa')->prefix('siswa')->group(function () {
+    Route::post('/logout', [SiswaAuthController::class, 'logout'])->name('siswa.logout');
 
     Route::get('/', [SiswaDashboardController::class, 'index'])->name('siswa.beranda');
     Route::get('/pembelajaran', [SiswaDashboardController::class, 'pembelajaran'])->name('siswa.pembelajaran');

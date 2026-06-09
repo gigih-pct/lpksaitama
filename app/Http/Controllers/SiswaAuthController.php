@@ -34,7 +34,7 @@ class SiswaAuthController extends Controller
                 ])->onlyInput('email');
             }
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended('/siswa');
         }
 
         return back()->withErrors([

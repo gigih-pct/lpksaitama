@@ -1,0 +1,63 @@
+name: Deploy to cPanel (cPanel Structure)
+
+on:
+  push:
+    branches:
+      - main # Jalankan otomatis setiap push ke branch main
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+
+    - name: ⚙️ Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: 📦 Build Frontend Assets (Vite)
+      run: |
+        npm install
+        npm run build
+
+    - name: 🐘 Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2' # Ubah sesuai versi PHP di cPanel Anda
+        
+    - name: 📦 Install Composer Dependencies
+      run: composer install --optimize-autoloader --no-dev --no-progress
+
+    # Tahap 1: Deploy file inti (Laravel Root)
+    - name: 📂 Sync Laravel Root files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        # TODO: Sesuaikan nama folder root laravel di cPanel (di luar public_html)
+        server-dir: /dash_saitama/ 
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/vendor/**
+          **/public/**
+          **/tests/**
+          .env.example
+          .env
+          README.md
+
+    # Tahap 2: Deploy file public ke public_html
+    - name: 📂 Sync Public HTML files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./public/
+        # TODO: Sesuaikan dengan nama folder domain Anda di dalam public_html
+        server-dir: /public_html/lpksaitama.my.id/ 
